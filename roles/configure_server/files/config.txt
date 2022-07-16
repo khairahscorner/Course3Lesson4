@@ -16,8 +16,8 @@ scrape_configs:
   - job_name: 'auto_connect'
     ec2_sd_configs:
       - region: us-east-1
-        access_key: AKIA5FEJIPPPFTQCRUST
-        secret_key: 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
+        access_key: [udacity-user-access_key]
+        secret_key: [udacity-user-secret-key]
         port: 9100
 
 
