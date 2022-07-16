@@ -22,22 +22,22 @@
   - name: "configure server scrap config"
     become: true
     shell: |
-      < config.txt tee -a ~/etc/prometheus/prometheus.yml
+      < ~/config.txt tee -a ~/etc/prometheus/prometheus.yml
 
   - name: "configure server service"
     become: true
     shell: |
-      < service.txt tee -a ~/etc/systemd/system/prometheus.service
+      < ~/service.txt tee -a ~/etc/systemd/system/prometheus.service
 
   - name: "change permissions"
     become: true
     shell: |
-      chown prometheus:prometheus /etc/prometheus
-      chown prometheus:prometheus /usr/local/bin/prometheus
-      chown prometheus:prometheus /usr/local/bin/promtool
-      chown -R prometheus:prometheus /etc/prometheus/consoles
-      chown -R prometheus:prometheus /etc/prometheus/console_libraries
-      chown -R prometheus:prometheus /var/lib/prometheus
+      chown prometheus:prometheus ~/etc/prometheus
+      chown prometheus:prometheus ~/usr/local/bin/prometheus
+      chown prometheus:prometheus ~/usr/local/bin/promtool
+      chown -R prometheus:prometheus ~/etc/prometheus/consoles
+      chown -R prometheus:prometheus ~/etc/prometheus/console_libraries
+      chown -R prometheus:prometheus ~/var/lib/prometheus
 
   - name: "configure systemd"
     become: true
