@@ -11,12 +11,28 @@
       tar xzf node_exporter-1.0.1.linux-amd64.tar.gz
       sudo cp node_exporter-1.0.1.linux-amd64/node_exporter ~/usr/local/bin/node_exporter
       rm -rf node_exporter-1.0.1.linux-amd64.tar.gz node_exporter-1.0.1.linux-amd64
-    
+  
+  - name: "make new dir"
+    shell: |
+      if [ -d "~/files" ]
+      then
+        echo "Directory already exists."
+      else
+        echo "Creating directory"
+        mkdir ~/files
+      fi
+      exit 0
+
+  - name: "copy second file"
+    copy:
+      src: service.txt
+      dest: ~/files/service.txt
+    register: copied_file_1
 
   - name: "configure exporter service"
     become: true
     shell: |
-      < service.txt tee -a ~/etc/systemd/system/node-exporter.service
+      < ~/files/service.txt tee -a ~/etc/systemd/system/node-exporter.service
 
   - name: "configure systemd"
     become: true
