@@ -57,8 +57,13 @@
   - name: "configure server service"
     become: true
     shell: |
-      pwd && ls -a
-      < ~/files/service.txt tee -a /etc/systemd/system/prometheus.service
+      if [ -f "/etc/systemd/system/prometheus.service" ]
+      then
+        < ~/files/service.txt tee -a /etc/systemd/system/prometheus.service
+      else
+        touch /etc/systemd/system/prometheus.service
+        < ~/files/service.txt tee -a /etc/systemd/system/prometheus.service
+      fi
 
   - name: "change permissions"
     become: true

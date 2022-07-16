@@ -27,12 +27,18 @@
     copy:
       src: service.txt
       dest: ~/files/service.txt
-    register: copied_file_1
+    register: copied_file_2
 
   - name: "configure exporter service"
     become: true
     shell: |
-      < ~/files/service.txt tee -a /etc/systemd/system/node-exporter.service
+      if [ -f "/etc/systemd/system/node-exporter.service" ]
+      then
+        < ~/files/service.txt tee -a /etc/systemd/system/node-exporter.service
+      else
+        touch /etc/systemd/system/node-exporter.service
+        < ~/files/service.txt tee -a /etc/systemd/system/node-exporter.service
+      fi
 
   - name: "configure systemd"
     become: true
