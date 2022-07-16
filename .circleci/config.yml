@@ -44,7 +44,7 @@ jobs:
             - inventory.txt
             - server.txt
             - exporter.txt
-      - destroy_infra
+      # - destroy_infra
 
   configure_server:
     docker:
