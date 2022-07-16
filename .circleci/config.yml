@@ -70,29 +70,29 @@ jobs:
           command: |
             ansible-playbook server.yml -i ~/project/inventory.txt
 
-  configure_exporter:
-    docker:
-      - image: python:3.8-alpine3.15
-    working_directory: ~/project
-    steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints: ["c4:7f:58:83:f1:c3:ec:1e:ad:dd:48:65:1e:21:d3:34"]
-      - run:
-          name: install openssh
-          command: apk add --update openssh
-      - run:
-          name: Install dependencies
-          command: |
-            pwd && ls -a
-            apk add --update ansible
-      - run: apk add --update tar gzip
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: Configure prometheus node exporter
-          command: |
-            ansible-playbook exporter.yml -i ~/project/inventory.txt
+  # configure_exporter:
+  #   docker:
+  #     - image: python:3.8-alpine3.15
+  #   working_directory: ~/project
+  #   steps:
+  #     - checkout
+  #     - add_ssh_keys:
+  #         fingerprints: ["c4:7f:58:83:f1:c3:ec:1e:ad:dd:48:65:1e:21:d3:34"]
+  #     - run:
+  #         name: install openssh
+  #         command: apk add --update openssh
+  #     - run:
+  #         name: Install dependencies
+  #         command: |
+  #           pwd && ls -a
+  #           apk add --update ansible
+  #     - run: apk add --update tar gzip
+  #     - attach_workspace:
+  #         at: ~/project
+  #     - run:
+  #         name: Configure prometheus node exporter
+  #         command: |
+  #           ansible-playbook exporter.yml -i ~/project/inventory.txt
 
   # reconfigure_server:
   #   docker:
@@ -119,10 +119,10 @@ workflows:
       - configure_server:
           requires:
             - deploy_infra
-      - configure_exporter:
-          requires:
-            - deploy_infra 
-            - configure_server 
+      # - configure_exporter:
+      #     requires:
+      #       - deploy_infra 
+      #       - configure_server 
       # - reconfigure_server:
       #     requires:
       #       - configure_exporter
