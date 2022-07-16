@@ -100,7 +100,7 @@ jobs:
   #           ansible-playbook exporter.yml -i ~/project/inventory.txt
 
 workflows:
-  blue-green-workflow:
+  workflow1:
     jobs:
       - deploy_infra:
           filters:

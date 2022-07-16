@@ -42,7 +42,7 @@ Resources:
         - AssociatePublicIpAddress: "true"
           DeviceIndex: "0"
           GroupSet:
-            - !Ref WebServerSG
+            - "prometheus-SG"
           SubnetId: !Ref SubnetID
       KeyName: course3
       Tags:
