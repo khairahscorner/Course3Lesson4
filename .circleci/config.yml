@@ -116,13 +116,13 @@ workflows:
           filters:
             branches:
               only: master
-      - configure_server:
-          requires:
-            - deploy_infra
-      - configure_exporter:
-          requires:
-            - deploy_infra 
-            - configure_server 
+      # - configure_server:
+      #     requires:
+      #       - deploy_infra
+      # - configure_exporter:
+      #     requires:
+      #       - deploy_infra 
+      #       - configure_server 
       # - reconfigure_server:
       #     requires:
       #       - configure_exporter
