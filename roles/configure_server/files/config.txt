@@ -40,7 +40,7 @@ groups:
 ##alertmanager.yml
 global:
   resolve_timeout: 1m
-  slack_api_url: https://hooks.slack.com/services/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
+  slack_api_url: [add slack webhook here]
   smtp_smarthost: smtp.gmail.com:587
   smtp_auth_username: airahtueme@gmail.com
   smtp_auth_password: [generate another app password]
