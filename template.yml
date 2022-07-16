@@ -9,7 +9,7 @@ Parameters:
   SubnetID:
     Description: subnet for the instance
     Type: String
-  SG_Id:
+  SGId:
     Description: security group for the instance
     Type: String
   ImageID:
@@ -42,7 +42,7 @@ Resources:
         - AssociatePublicIpAddress: "true"
           DeviceIndex: "0"
           GroupSet:
-            - "prometheus-SG"
+            - !Ref SGId
           SubnetId: !Ref SubnetID
       KeyName: course3
       Tags:
