@@ -37,7 +37,7 @@ jobs:
             aws cloudformation list-exports --query "Exports[?Name==\`NodeExporterDNS\`].Value" --no-paginate --output text >> ~/inventory.txt
             aws cloudformation list-exports --query "Exports[?Name==\`ServerDNS\`].Value" --no-paginate --output text >> ~/server.txt
             aws cloudformation list-exports --query "Exports[?Name==\`NodeExporterDNS\`].Value" --no-paginate --output text >> ~/exporter.txt
-      - run: yum install --update tar gzip
+      - run: yum install -y tar gzip
       - persist_to_workspace:
           root:  ~/
           paths:
