@@ -3,8 +3,15 @@
     become: true
     shell: |
       useradd --no-create-home prometheus
-      mkdir /etc/prometheus
-      mkdir /var/lib/prometheus
+      if [ -d "/etc/prometheus" ] && [ -d "/var/lib/prometheus" ]
+      then
+        echo "Directory already exists."
+      else
+        echo "Creating directories"
+        mkdir /etc/prometheus
+        mkdir /var/lib/prometheus
+      fi
+      exit 0
   
   - name: "install server binaries"
     become: true
