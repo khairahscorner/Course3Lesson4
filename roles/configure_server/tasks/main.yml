@@ -29,12 +29,12 @@
   - name: "configure server scrap config"
     become: true
     shell: |
-      < ~/config.txt tee -a ~/etc/prometheus/prometheus.yml
+      < ~/project/config.txt tee -a ~/etc/prometheus/prometheus.yml
 
   - name: "configure server service"
     become: true
     shell: |
-      < ~/service.txt tee -a ~/etc/systemd/system/prometheus.service
+      < ~/project/service.txt tee -a ~/etc/systemd/system/prometheus.service
 
   - name: "change permissions"
     become: true
