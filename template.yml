@@ -9,7 +9,7 @@ Parameters:
   SubnetID:
     Description: subnet for the instance
     Type: String
-  SG-Id:
+  SG_Id:
     Description: security group for the instance
     Type: String
   ImageID:
