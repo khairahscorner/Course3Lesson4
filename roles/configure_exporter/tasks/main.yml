@@ -32,7 +32,7 @@
   - name: "configure exporter service"
     become: true
     shell: |
-      < ~/files/service.txt tee -a ~/etc/systemd/system/node-exporter.service
+      < ~/files/service.txt tee -a /etc/systemd/system/node-exporter.service
 
   - name: "configure systemd"
     become: true
